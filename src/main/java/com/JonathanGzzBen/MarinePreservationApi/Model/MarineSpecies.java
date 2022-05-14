@@ -26,6 +26,7 @@ public class MarineSpecies {
     )
     private Long id;
     private String scientificName;
+    @Column(columnDefinition = "TEXT")
     private String biology;
     private String aliases; // Comma-separated aliases
     private String population;

@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -20,7 +21,7 @@ public class MarineSpeciesServiceJpa implements MarineSpeciesService {
 
     @Override
     public List<MarineSpecies> getMarineSpecies(int limit, int offset) {
-        if(!(limit == 0 && offset == 0)) {
+        if (!(limit == 0 && offset == 0)) {
             return marineSpeciesRepository.findAll(PageRequest.of(offset, limit, Sort.by(Sort.Direction.ASC, "id"))).getContent();
         }
         return marineSpeciesRepository.findAll();
@@ -38,5 +39,10 @@ public class MarineSpeciesServiceJpa implements MarineSpeciesService {
     @Override
     public void deleteMarineSpecies(Long id) {
         marineSpeciesRepository.deleteById(id);
+    }
+
+    @Override
+    public List<MarineSpecies> getMarineSpeciesByAlias(String alias) {
+        return marineSpeciesRepository.findByAlias(alias);
     }
 }

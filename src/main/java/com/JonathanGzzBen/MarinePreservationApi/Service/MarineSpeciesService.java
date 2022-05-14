@@ -10,4 +10,6 @@ public interface MarineSpeciesService {
     MarineSpecies addNewMarineSpecies(MarineSpecies marineSpecies);
 
     void deleteMarineSpecies(Long id);
+
+    List<MarineSpecies> getMarineSpeciesByAlias(String alias);
 }

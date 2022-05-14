@@ -18,7 +18,10 @@ public class MarineSpeciesController {
     }
 
     @GetMapping
-    public List<MarineSpecies> getMarineSpecies(@RequestParam(name = "limit", defaultValue = "0") int limit, @RequestParam(name="offset", defaultValue = "0") int offset) {
+    public List<MarineSpecies> getMarineSpecies(@RequestParam(name = "limit", defaultValue = "0") int limit, @RequestParam(name = "offset", defaultValue = "0") int offset, @RequestParam(name = "alias", defaultValue = "") String alias) {
+        if(!alias.isEmpty()) {
+            return marineSpeciesService.getMarineSpeciesByAlias(alias);
+        }
         return marineSpeciesService.getMarineSpecies(limit, offset);
     }
 

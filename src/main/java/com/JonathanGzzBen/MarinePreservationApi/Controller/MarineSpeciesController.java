@@ -3,12 +3,12 @@ package com.JonathanGzzBen.MarinePreservationApi.Controller;
 import com.JonathanGzzBen.MarinePreservationApi.Model.MarineSpecies;
 import com.JonathanGzzBen.MarinePreservationApi.Service.MarineSpeciesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController()
+@RequestMapping("/marinespecies")
 public class MarineSpeciesController {
     private final MarineSpeciesService marineSpeciesService;
 
@@ -18,7 +18,12 @@ public class MarineSpeciesController {
     }
 
     @GetMapping
-    public List<MarineSpecies> getSpecies() {
+    public List<MarineSpecies> getMarineSpecies() {
         return marineSpeciesService.getMarineSpecies();
+    }
+
+    @PostMapping
+    public MarineSpecies registerNewMarineSpecies(@RequestBody MarineSpecies marineSpecies) {
+        return marineSpeciesService.addNewMarineSpecies(marineSpecies);
     }
 }

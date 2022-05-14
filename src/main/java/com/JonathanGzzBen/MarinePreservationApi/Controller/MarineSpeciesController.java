@@ -18,8 +18,8 @@ public class MarineSpeciesController {
     }
 
     @GetMapping
-    public List<MarineSpecies> getMarineSpecies() {
-        return marineSpeciesService.getMarineSpecies();
+    public List<MarineSpecies> getMarineSpecies(@RequestParam(name = "limit", defaultValue = "0") int limit, @RequestParam(name="offset", defaultValue = "0") int offset) {
+        return marineSpeciesService.getMarineSpecies(limit, offset);
     }
 
     @PostMapping

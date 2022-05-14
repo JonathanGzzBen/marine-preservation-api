@@ -29,4 +29,9 @@ public class MarineSpeciesServiceJpa  implements MarineSpeciesService{
         }
         return marineSpeciesRepository.save(marineSpecies);
     }
+
+    @Override
+    public void deleteMarineSpecies(Long id) {
+        marineSpeciesRepository.deleteById(id);
+    }
 }

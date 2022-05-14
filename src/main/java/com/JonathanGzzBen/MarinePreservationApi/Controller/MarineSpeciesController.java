@@ -26,4 +26,9 @@ public class MarineSpeciesController {
     public MarineSpecies registerNewMarineSpecies(@RequestBody MarineSpecies marineSpecies) {
         return marineSpeciesService.addNewMarineSpecies(marineSpecies);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteMarineSpecies(@PathVariable Long id) {
+        marineSpeciesService.deleteMarineSpecies(id);
+    }
 }

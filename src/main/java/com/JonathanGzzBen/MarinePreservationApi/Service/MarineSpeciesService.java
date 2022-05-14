@@ -8,4 +8,6 @@ public interface MarineSpeciesService {
     List<MarineSpecies> getMarineSpecies();
 
     MarineSpecies addNewMarineSpecies(MarineSpecies marineSpecies);
+
+    void deleteMarineSpecies(Long id);
 }

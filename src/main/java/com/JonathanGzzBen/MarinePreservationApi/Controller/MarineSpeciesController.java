@@ -3,12 +3,12 @@ package com.JonathanGzzBen.MarinePreservationApi.Controller;
 import com.JonathanGzzBen.MarinePreservationApi.Model.MarineSpecies;
 import com.JonathanGzzBen.MarinePreservationApi.Service.MarineSpeciesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController()
+@RequestMapping("/marinespecies")
 public class MarineSpeciesController {
     private final MarineSpeciesService marineSpeciesService;
 
@@ -18,7 +18,20 @@ public class MarineSpeciesController {
     }
 
     @GetMapping
-    public List<MarineSpecies> getSpecies() {
-        return marineSpeciesService.getMarineSpecies();
+    public List<MarineSpecies> getMarineSpecies(@RequestParam(name = "limit", defaultValue = "0") int limit, @RequestParam(name = "offset", defaultValue = "0") int offset, @RequestParam(name = "alias", defaultValue = "") String alias) {
+        if(!alias.isEmpty()) {
+            return marineSpeciesService.getMarineSpeciesByAlias(alias);
+        }
+        return marineSpeciesService.getMarineSpecies(limit, offset);
+    }
+
+    @PostMapping
+    public MarineSpecies registerNewMarineSpecies(@RequestBody MarineSpecies marineSpecies) {
+        return marineSpeciesService.addNewMarineSpecies(marineSpecies);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMarineSpecies(@PathVariable Long id) {
+        marineSpeciesService.deleteMarineSpecies(id);
     }
 }

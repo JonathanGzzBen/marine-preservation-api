@@ -29,6 +29,7 @@ public class MarineSpeciesConfig {
                 marineSpecies.setAliases(marineSpeciesJsonObject.getString("Species Name"));
                 marineSpecies.setBiology(marineSpeciesJsonObject.getString("Biology"));
                 marineSpecies.setPopulation(marineSpeciesJsonObject.getString("Population"));
+                marineSpecies.setImageUrl(marineSpeciesJsonObject.getJSONArray("Image Gallery").getJSONObject(0).getString("src"));
                 if (marineSpecies.getPopulation().contains("below")) {
                     marineSpeciesBelowTargetPopulation.add(marineSpecies);
                 }
@@ -44,7 +45,7 @@ public class MarineSpeciesConfig {
         String line;
         StringBuilder responseContent = new StringBuilder();
         try {
-            URL url = new URL("https://www.fishwatch.gov/api/species");
+            URL url = new URL("https://www.fishwatch.gov/api/species");
             var conn = (HttpURLConnection) url.openConnection();
 
             // Request setup
